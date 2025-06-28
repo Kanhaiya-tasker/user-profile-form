@@ -1,0 +1,19 @@
+# Node modules (for both client and server)
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment variables
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Uploads folder if it's generated dynamically (optional)
+server/uploads/

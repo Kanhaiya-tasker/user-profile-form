@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const path = require("path");
 const locationRoutes = require("./routes/locationRoutes");
+require("dotenv").config();
 
 const app = express();
 const PORT = 5000;
@@ -20,7 +21,7 @@ app.use("/", locationRoutes);
 
 // MongoDB Connect
 mongoose
-  .connect("mongodb://127.0.0.1:27017/userProfileForm", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -33,4 +34,7 @@ mongoose
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
+});
+app.get("/", (req, res) => {
+  res.send("Server is up and running!");
 });
