@@ -82,7 +82,7 @@ username.addEventListener("blur", async () => {
   const val = username.value.trim();
   if (val.length >= 4 && val.length <= 20 && !val.includes(" ")) {
     const res = await fetch(
-      `http://localhost:5000/check-username?username=${val}`
+      `https://user-profile-form-2.onrender.com/check-username?username=${val}`
     );
     const data = await res.json();
     if (data.available) {
@@ -157,7 +157,7 @@ const stateSelect = document.getElementById("state");
 const citySelect = document.getElementById("city");
 
 async function fetchCountries() {
-  const res = await fetch("http://localhost:5000/countries");
+  const res = await fetch("https://user-profile-form-2.onrender.com/countries");
   const countries = await res.json();
   countrySelect.innerHTML = `<option value="">--Select Country--</option>`;
   countries.forEach((country) => {
@@ -172,7 +172,9 @@ countrySelect.addEventListener("change", async () => {
 
   if (!country) return;
 
-  const res = await fetch(`http://localhost:5000/states/${country}`);
+  const res = await fetch(
+    `https://user-profile-form-2.onrender.com/states/${country}`
+  );
   const states = await res.json();
   states.forEach((state) => {
     stateSelect.innerHTML += `<option value="${state}">${state}</option>`;
@@ -184,7 +186,9 @@ stateSelect.addEventListener("change", async () => {
   citySelect.innerHTML = `<option value="">--Select City--</option>`;
   if (!state) return;
 
-  const res = await fetch(`http://localhost:5000/cities/${state}`);
+  const res = await fetch(
+    `https://user-profile-form-2.onrender.com/cities/${state}`
+  );
   const cities = await res.json();
   cities.forEach((city) => {
     citySelect.innerHTML += `<option value="${city}">${city}</option>`;
