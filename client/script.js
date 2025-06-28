@@ -82,7 +82,7 @@ username.addEventListener("blur", async () => {
   const val = username.value.trim();
   if (val.length >= 4 && val.length <= 20 && !val.includes(" ")) {
     const res = await fetch(
-      `https://user-profile-form-4.onrender.com/check-username?username=${val}`
+      `https://user-profile-form.onrender.com/check-username?username=${val}`
     );
     const data = await res.json();
     if (data.available) {
@@ -138,7 +138,7 @@ form.addEventListener("submit", async (e) => {
   const formData = new FormData(form);
 
   const res = await fetch(
-    "https://user-profile-form-4.onrender.com/submit-profile",
+    "https://user-profile-form.onrender.com/submit-profile",
     {
       method: "POST",
       body: formData,
@@ -157,7 +157,7 @@ const stateSelect = document.getElementById("state");
 const citySelect = document.getElementById("city");
 
 async function fetchCountries() {
-  const res = await fetch("https://user-profile-form-4.onrender.com/countries");
+  const res = await fetch("https://user-profile-form.onrender.com/countries");
   const countries = await res.json();
   countrySelect.innerHTML = `<option value="">--Select Country--</option>`;
   countries.forEach((country) => {
@@ -173,7 +173,7 @@ countrySelect.addEventListener("change", async () => {
   if (!country) return;
 
   const res = await fetch(
-    `https://user-profile-form-4.onrender.com/states/${country}`
+    `https://user-profile-form.onrender.com/states/${country}`
   );
   const states = await res.json();
   states.forEach((state) => {
@@ -187,7 +187,7 @@ stateSelect.addEventListener("change", async () => {
   if (!state) return;
 
   const res = await fetch(
-    `https://user-profile-form-4.onrender.com/cities/${state}`
+    `https://user-profile-form.onrender.com/cities/${state}`
   );
   const cities = await res.json();
   cities.forEach((city) => {
