@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile Update</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="form-container">
+      <form id="multiStepForm" enctype="multipart/form-data">
+        <!-- Step 1: Personal Information -->
+        <div class="form-step" id="step1">
+          <h2>Step 1: Personal Information</h2>
+
+          <label for="profilePhoto">Profile Photo (JPG/PNG, Max 2MB)</label>
+          <input
+            type="file"
+            id="profilePhoto"
+            name="profilePhoto"
+            accept="image/png, image/jpeg"
+            required
+          />
+          <img
+            id="photoPreview"
+            src=""
+            alt="Preview"
+            style="max-width: 150px; display: none; margin-top: 10px"
+          />
+
+          <label for="username">Username (4–20 chars, no spaces)</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            autocomplete="username"
+          />
+          <small id="usernameStatus"></small>
+
+          <label for="currentPassword">Current Password</label>
+          <input
+            type="password"
+            id="currentPassword"
+            name="currentPassword"
+            required
+            autocomplete="current-password"
+          />
+
+          <label for="newPassword"
+            >New Password (min 8 characters, include 1 number and 1 special
+            character)</label
+          >
+          <input
+            type="password"
+            id="newPassword"
+            name="newPassword"
+            autocomplete="new-password"
+          />
+          <small id="passwordStrength"></small>
+        </div>
+
+        <!-- Step 2: Professional Details -->
+        <div class="form-step" id="step2" style="display: none">
+          <h2>Step 2: Professional Details</h2>
+
+          <label for="profession">Profession</label>
+          <select id="profession" name="profession" required>
+            <option value="">--Select Profession--</option>
+            <option value="Student">Student</option>
+            <option value="Developer">Developer</option>
+            <option value="Entrepreneur">Entrepreneur</option>
+          </select>
+
+          <div id="companyDetails" style="display: none">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" name="companyName" />
+          </div>
+
+          <label for="addressLine1">Address Line 1</label>
+          <input type="text" id="addressLine1" name="addressLine1" required />
+        </div>
+
+        <!-- Step 3: Preferences -->
+        <div class="form-step" id="step3" style="display: none">
+          <h2>Step 3: Preferences</h2>
+
+          <label for="country">Country</label>
+          <select id="country" name="country" required></select>
+
+          <label for="state">State</label>
+          <select id="state" name="state" required></select>
+
+          <label for="city">City</label>
+          <select id="city" name="city" required></select>
+
+          <label>Subscription Plan</label>
+          <input
+            type="radio"
+            id="basic"
+            name="subscription"
+            value="Basic"
+            required
+          />
+          <label for="basic">Basic</label><br />
+          <input type="radio" id="pro" name="subscription" value="Pro" />
+          <label for="pro">Pro</label><br />
+          <input
+            type="radio"
+            id="enterprise"
+            name="subscription"
+            value="Enterprise"
+          />
+          <label for="enterprise">Enterprise</label><br />
+
+          <label for="newsletter">
+            <input type="checkbox" id="newsletter" name="newsletter" checked />
+            Subscribe to Newsletter
+          </label>
+        </div>
+
+        <!-- Step 4: Summary -->
+        <div class="form-step" id="step4" style="display: none">
+          <h2>Summary</h2>
+          <div id="summaryContent"></div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="buttons">
+          <button type="button" id="prevBtn">Previous</button>
+          <button type="button" id="nextBtn">Next</button>
+          <button type="submit" id="submitBtn" style="display: none">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
