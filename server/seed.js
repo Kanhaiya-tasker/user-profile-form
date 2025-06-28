@@ -1,24 +1,23 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const Location = require("./models/Location");
 
-mongoose.connect("mongodb://127.0.0.1:27017/userProfileForm");
-
-const locations = [
-  { country: "India", state: "Maharashtra", city: "Mumbai" },
-  { country: "India", state: "Maharashtra", city: "Pune" },
-  { country: "India", state: "Bihar", city: "Patna" },
-  { country: "India", state: "Bihar", city: "Gaya" },
-  { country: "USA", state: "California", city: "Los Angeles" },
-  { country: "USA", state: "California", city: "San Francisco" },
-  { country: "USA", state: "Texas", city: "Houston" },
-  { country: "USA", state: "Texas", city: "Austin" },
-];
-
-Location.insertMany(locations)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("Locations seeded");
+    const locations = [
+      { country: "India", state: "Maharashtra", city: "Mumbai" },
+      { country: "India", state: "Bihar", city: "Patna" },
+      { country: "USA", state: "California", city: "Los Angeles" },
+      { country: "USA", state: "Texas", city: "Houston" },
+    ];
+
+    return Location.insertMany(locations);
+  })
+  .then(() => {
+    console.log("✅ Locations seeded to MongoDB Atlas");
     mongoose.disconnect();
   })
   .catch((err) => {
-    console.error("Seeding error:", err);
+    console.error("❌ Seeding error:", err);
   });
